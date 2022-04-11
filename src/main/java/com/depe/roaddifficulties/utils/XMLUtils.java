@@ -67,7 +67,7 @@ public class XMLUtils {
                 .road(nodeAndValuesMap.get("nr_drogi"))
                 .voivodeship((nodeAndValuesMap.get("woj")))
                 .km(parseStringToDouble(nodeAndValuesMap.get("km")))
-                .dl(parseStringToDouble(nodeAndValuesMap.get("dl")))
+                .length(parseStringToDouble(nodeAndValuesMap.get("dl")))
                 .location(Location.builder()
                         .geoLat(parseStringToDouble(nodeAndValuesMap.get("geo_lat")))
                         .geoLong(parseStringToDouble(nodeAndValuesMap.get("geo_long")))
