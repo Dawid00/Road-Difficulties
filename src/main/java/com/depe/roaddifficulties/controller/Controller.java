@@ -23,12 +23,12 @@ class Controller {
     }
 
     @GetMapping("/road/{road}")
-    Results getResultsByWojewodztwo(@PathVariable String road){
+    Results getResultsByRoad(@PathVariable String road){
         return roadDifficultiesService.getResultsByRoad(road);
     }
 
     @GetMapping("/voivodeship/{voivodeship}")
-    Results getResultsByWojewodztwo(@PathVariable Voivodeship voivodeship){
+    Results getResultsByVoivodeship(@PathVariable String voivodeship){
         return roadDifficultiesService.getResultsByVoivodeship(voivodeship);
     }
 
