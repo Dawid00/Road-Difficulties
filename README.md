@@ -18,6 +18,8 @@ Java and Spring Boot to create application.
 ```http
   GET api/v1/traffic-difficulties/voivodeship/{voivodeship}
 ```
+
+except voivodeship: warminsko_mazurskie , kujawsko_pomorskie
 #### Get all current road difficulties in road 
 ```http
   GET api/v1/traffic-difficulties/road/{road}
