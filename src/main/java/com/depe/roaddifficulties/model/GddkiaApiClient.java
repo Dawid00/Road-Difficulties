@@ -1,5 +1,6 @@
 package com.depe.roaddifficulties.model;
 
+import com.depe.roaddifficulties.exceptions.InternalServerException;
 import com.depe.roaddifficulties.utils.XMLUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -33,12 +34,13 @@ public class GddkiaApiClient {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if(response.statusCode() == 200){
                 return XMLUtils.deserializeResultsFromXML(response.body());
-            }else{
-                throw new RuntimeException();
+            }
+            else{
+                throw new InternalServerException();
             }
         }
         catch (IOException | InterruptedException | URISyntaxException e) {
-            throw new RuntimeException();
+            throw new InternalServerException();
         }
     }
 }
