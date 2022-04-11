@@ -33,7 +33,7 @@ public class GddkiaApiClient {
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if(response.statusCode() == 200){
-                return XMLUtils.deserializeResultsFromXML(response.body());
+                return XMLUtils.deserializeResultsFromXMLAsString(response.body());
             }
             else{
                 throw new InternalServerException();

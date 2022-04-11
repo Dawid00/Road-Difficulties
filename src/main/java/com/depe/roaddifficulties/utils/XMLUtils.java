@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class XMLUtils {
 
-    public static Results deserializeResultsFromXML(String xml) {
+    public static Results deserializeResultsFromXMLAsString(String xml) {
         try {
             xml = xml.replaceAll("\\r\\n|\\r|\\n", " ");
             InputStream targetStream = new ByteArrayInputStream(xml.getBytes());
