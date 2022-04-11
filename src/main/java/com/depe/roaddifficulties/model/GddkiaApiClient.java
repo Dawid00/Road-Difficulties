@@ -1,7 +1,6 @@
 package com.depe.roaddifficulties.model;
 
 import com.depe.roaddifficulties.exceptions.InternalServerException;
-import com.depe.roaddifficulties.utils.XMLUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -24,15 +23,20 @@ public class GddkiaApiClient {
             .connectTimeout(Duration.ofSeconds(10))
             .build();
 
-    public HttpResponse<String> getResponse() {
+    public String getResponse() {
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI(url))
                     .timeout(Duration.of(10, SECONDS))
                     .GET()
                     .build();
-            return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
+            var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode() == 200){
+                return response.body();
+            }
+            else{
+                throw new InternalServerException();
+            }
         }
         catch (IOException | InterruptedException | URISyntaxException e) {
             throw new InternalServerException();
