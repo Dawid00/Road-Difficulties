@@ -84,7 +84,7 @@ public class RoadDifficultiesService {
                 Math.cos(latitude1) * Math.cos(latitude2) *
                         Math.sin(deltaLongitude / 2) * Math.sin(deltaLongitude / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return (r * c) ; // r is earth’s radius
+        return (r * c) / 1000 ; // r is earth’s radius
     }
 }
 
