@@ -1,9 +1,10 @@
 package com.depe.roaddifficulties.service;
 
+import com.depe.roaddifficulties.exceptions.WrongParamException;
 import com.depe.roaddifficulties.model.*;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class RoadDifficultiesService {
@@ -18,7 +19,8 @@ public class RoadDifficultiesService {
         return gddkiaApiClient.getResults();
     }
 
-    public Results getResultsByVoivodeship(Voivodeship voivodeship) {
+    public Results getResultsByVoivodeship(String queryVoivodeship) {
+        Voivodeship voivodeship = getVoivodeshipFromString(queryVoivodeship);
         Results results = gddkiaApiClient.getResults();
         List<TrafficDifficulty> trafficDifficulties = results.getTrafficDifficulties().stream()
                 .filter(trafficDifficulty -> trafficDifficulty.getVoivodeship().equals(voivodeship.getName()))
@@ -26,10 +28,28 @@ public class RoadDifficultiesService {
         return new Results(results.getDate(), trafficDifficulties);
     }
 
+    private static Voivodeship getVoivodeshipFromString(String voivodeship) {
+        if(isVoivodeship(voivodeship)){
+            return Voivodeship.valueOf(voivodeship.toUpperCase(Locale.ROOT));
+        }
+        throw new WrongParamException(voivodeship + " is not a voivodeship");
+    }
+
+    private static boolean isVoivodeship(String voivodeship) {
+        if(voivodeship != null){
+            for (Voivodeship v : Voivodeship.values()) {
+                if (v.name().toLowerCase(Locale.ROOT).equals(voivodeship.toLowerCase(Locale.ROOT))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public Results getResultsByRoad(String road) {
         Results results = gddkiaApiClient.getResults();
         List<TrafficDifficulty> trafficDifficulties = results.getTrafficDifficulties().stream()
-                .filter(trafficDifficulty -> trafficDifficulty.getRoad().equals(road))
+                .filter(trafficDifficulty -> trafficDifficulty.getRoad().equals(road.toUpperCase(Locale.ROOT)))
                 .toList();
         return new Results(results.getDate(), trafficDifficulties);
     }
