@@ -2,7 +2,6 @@ package com.depe.roaddifficulties.controller;
 
 
 import com.depe.roaddifficulties.model.Results;
-import com.depe.roaddifficulties.model.Voivodeship;
 import com.depe.roaddifficulties.service.RoadDifficultiesService;
 import org.springframework.web.bind.annotation.*;
 
