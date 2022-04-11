@@ -1,8 +1,12 @@
 package com.depe.roaddifficulties.service;
 
+import com.depe.roaddifficulties.exceptions.InternalServerException;
 import com.depe.roaddifficulties.exceptions.WrongParamException;
 import com.depe.roaddifficulties.model.*;
+import com.depe.roaddifficulties.utils.XMLUtils;
 import org.springframework.stereotype.Service;
+
+import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Locale;
 
@@ -16,12 +20,22 @@ public class RoadDifficultiesService {
     }
 
     public Results getResults() {
-        return gddkiaApiClient.getResults();
+        HttpResponse<String> response = gddkiaApiClient.getResponse();
+        return getResultsFromResponse(response);
     }
 
+    private static Results getResultsFromResponse(HttpResponse<String> response){
+        if(response.statusCode() == 200){
+            return XMLUtils.deserializeResultsFromXMLAsString(response.body());
+        }
+        else{
+            throw new InternalServerException();
+        }
+    }
     public Results getResultsByVoivodeship(String queryVoivodeship) {
         Voivodeship voivodeship = getVoivodeshipFromString(queryVoivodeship);
-        Results results = gddkiaApiClient.getResults();
+        HttpResponse<String> response = gddkiaApiClient.getResponse();
+        Results results = getResultsFromResponse(response);
         List<TrafficDifficulty> trafficDifficulties = results.getTrafficDifficulties().stream()
                 .filter(trafficDifficulty -> trafficDifficulty.getVoivodeship().equals(voivodeship.getName()))
                 .toList();
@@ -47,7 +61,8 @@ public class RoadDifficultiesService {
     }
 
     public Results getResultsByRoad(String road) {
-        Results results = gddkiaApiClient.getResults();
+        HttpResponse<String> response = gddkiaApiClient.getResponse();
+        Results results = getResultsFromResponse(response);
         List<TrafficDifficulty> trafficDifficulties = results.getTrafficDifficulties().stream()
                 .filter(trafficDifficulty -> trafficDifficulty.getRoad().equals(road.toUpperCase(Locale.ROOT)))
                 .toList();
@@ -58,7 +73,8 @@ public class RoadDifficultiesService {
         Location location = Location.builder().geoLat(geoLat)
                 .geoLong(geoLong)
                 .build();
-        Results results = gddkiaApiClient.getResults();
+        HttpResponse<String> response = gddkiaApiClient.getResponse();
+        Results results = getResultsFromResponse(response);
         List<TrafficDifficulty> trafficDifficulties = results.getTrafficDifficulties().stream()
                 .filter(trafficDifficulty -> isTrafficDifficultyInRange(location, trafficDifficulty, distance))
                 .toList();

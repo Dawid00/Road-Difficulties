@@ -24,20 +24,15 @@ public class GddkiaApiClient {
             .connectTimeout(Duration.ofSeconds(10))
             .build();
 
-    public Results getResults() {
+    public HttpResponse<String> getResponse() {
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI(url))
                     .timeout(Duration.of(10, SECONDS))
                     .GET()
                     .build();
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            if(response.statusCode() == 200){
-                return XMLUtils.deserializeResultsFromXMLAsString(response.body());
-            }
-            else{
-                throw new InternalServerException();
-            }
+            return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
         }
         catch (IOException | InterruptedException | URISyntaxException e) {
             throw new InternalServerException();
