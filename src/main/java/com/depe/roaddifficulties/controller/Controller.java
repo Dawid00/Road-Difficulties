@@ -21,8 +21,8 @@ class Controller {
     }
 
     @GetMapping("/road/{road}")
-    ResponseEntity<Results> getResultsByRoad(@PathVariable String road){
-        return ResponseEntity.ok(trafficDifficultiesService.getResultsByRoad(road));
+    ResponseEntity<Results> getResultsByRoad(@PathVariable(value = "road") String roadName){
+        return ResponseEntity.ok(trafficDifficultiesService.getResultsByRoadName(roadName));
     }
 
     @GetMapping("/voivodeship/{voivodeship}")

@@ -2,6 +2,7 @@ package com.depe.roaddifficulties;
 
 import com.depe.roaddifficulties.exceptions.WrongParamException;
 import com.depe.roaddifficulties.model.GddkiaApiClient;
+import com.depe.roaddifficulties.model.Road;
 import com.depe.roaddifficulties.model.TrafficDifficulty;
 import com.depe.roaddifficulties.model.Voivodeship;
 import com.depe.roaddifficulties.service.TrafficDifficultiesService;
@@ -96,20 +97,21 @@ public class RoadDifficultyServiceTest {
 
     private static Stream<Arguments> provideRoads() {
         return Stream.of(
-                Arguments.of("a2"),
-                Arguments.of("a1")
+                Arguments.of("a2", 2),
+                Arguments.of("a1", 4),
+                Arguments.of("747", 0)
         );
     }
 
     @ParameterizedTest
     @MethodSource("provideRoads")
-    void shouldReturnResultsWithRoad(String road) {
+    void shouldReturnResultsWithRoad(String roadName, int amount) {
         //when
         when(client.getResponse()).thenReturn(testText);
-        var result = underTest.getResultsByRoad(road);
-        Set<String> results = result.getTrafficDifficulties().stream().map(TrafficDifficulty::getRoad).collect(Collectors.toSet());
+        var result = underTest.getResultsByRoadName(roadName);
+        Set<Road> results = result.getTrafficDifficulties().stream().map(TrafficDifficulty::getRoad).collect(Collectors.toSet());
         //then
-        assertThat(results).hasSize(1).containsExactly(road.toUpperCase(Locale.ROOT));
+        assertThat(results).hasSize(amount);
     }
 
     private static Stream<Arguments> provideDistance() {

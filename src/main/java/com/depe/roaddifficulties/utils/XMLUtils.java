@@ -61,9 +61,13 @@ public class XMLUtils {
         return TrafficDifficulty.
                 builder()
                 .difficultyType(nodeAndValuesMap.get("typ"))
-                .road(nodeAndValuesMap.get("nr_drogi"))
+                .road(
+                        Road.builder()
+                                .name(nodeAndValuesMap.get("nr_drogi"))
+                                .km(parseStringToDouble(nodeAndValuesMap.get("km")))
+                                .build()
+                )
                 .voivodeship(getVoivodeshipFromString(nodeAndValuesMap.get("woj")))
-                .km(parseStringToDouble(nodeAndValuesMap.get("km")))
                 .length(parseStringToDouble(nodeAndValuesMap.get("dl")))
                 .location(Location.builder()
                         .geoLat(parseStringToDouble(nodeAndValuesMap.get("geo_lat")))

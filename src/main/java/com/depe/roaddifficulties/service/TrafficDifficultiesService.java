@@ -52,11 +52,11 @@ public class TrafficDifficultiesService {
         return false;
     }
 
-    public Results getResultsByRoad(String road) {
+    public Results getResultsByRoadName(String roadName) {
         String responseBody = gddkiaApiClient.getResponse();
         Results results = getResultsFromResponseBody(responseBody);
         List<TrafficDifficulty> trafficDifficulties = results.getTrafficDifficulties().stream()
-                .filter(trafficDifficulty -> trafficDifficulty.getRoad().equals(road.toUpperCase(Locale.ROOT)))
+                .filter(trafficDifficulty -> trafficDifficulty.getRoad().getName().equals(roadName.toUpperCase(Locale.ROOT)))
                 .toList();
         return new Results(results.getDate(), trafficDifficulties);
     }

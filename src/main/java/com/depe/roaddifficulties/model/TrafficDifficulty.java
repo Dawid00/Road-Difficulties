@@ -13,12 +13,11 @@ import java.time.LocalDateTime;
 public class TrafficDifficulty {
 
     private String difficultyType;
-    private String road;
+    private String name;
     private Voivodeship voivodeship;
-    private double km;
+    private Road road;
     private double length;
     private Location location;
-    private String name;
     private LocalDateTime startDate;
     private LocalDateTime finishDate;
     private String roundAbout;
