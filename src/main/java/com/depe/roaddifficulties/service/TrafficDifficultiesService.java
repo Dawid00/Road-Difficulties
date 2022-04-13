@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Locale;
 
 @Service
-public class RoadDifficultiesService {
+public class TrafficDifficultiesService {
 
     private final GddkiaApiClient gddkiaApiClient;
 
-    public RoadDifficultiesService(GddkiaApiClient gddkiaApiClient) {
+    public TrafficDifficultiesService(GddkiaApiClient gddkiaApiClient) {
         this.gddkiaApiClient = gddkiaApiClient;
     }
 

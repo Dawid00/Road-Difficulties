@@ -1,7 +1,7 @@
 package com.depe.roaddifficulties.controller;
 
 import com.depe.roaddifficulties.model.Results;
-import com.depe.roaddifficulties.service.RoadDifficultiesService;
+import com.depe.roaddifficulties.service.TrafficDifficultiesService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,30 +9,30 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/traffic-difficulties")
 class Controller {
 
-    private final RoadDifficultiesService roadDifficultiesService;
+    private final TrafficDifficultiesService trafficDifficultiesService;
 
-    Controller(RoadDifficultiesService roadDifficultiesService) {
-        this.roadDifficultiesService = roadDifficultiesService;
+    Controller(TrafficDifficultiesService trafficDifficultiesService) {
+        this.trafficDifficultiesService = trafficDifficultiesService;
     }
 
     @GetMapping()
     ResponseEntity<Results> getResults(){
-        return ResponseEntity.ok(roadDifficultiesService.getResults());
+        return ResponseEntity.ok(trafficDifficultiesService.getResults());
     }
 
     @GetMapping("/road/{road}")
     ResponseEntity<Results> getResultsByRoad(@PathVariable String road){
-        return ResponseEntity.ok(roadDifficultiesService.getResultsByRoad(road));
+        return ResponseEntity.ok(trafficDifficultiesService.getResultsByRoad(road));
     }
 
     @GetMapping("/voivodeship/{voivodeship}")
     ResponseEntity<Results> getResultsByVoivodeship(@PathVariable String voivodeship){
-        return ResponseEntity.ok(roadDifficultiesService.getResultsByVoivodeship(voivodeship));
+        return ResponseEntity.ok(trafficDifficultiesService.getResultsByVoivodeship(voivodeship));
     }
 
     @GetMapping("/map")
     ResponseEntity<Results> getResultsByMap(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance){
-        return ResponseEntity.ok(roadDifficultiesService.getResultsByDistance(latitude, longitude, distance));
+        return ResponseEntity.ok(trafficDifficultiesService.getResultsByDistance(latitude, longitude, distance));
     }
 
 }

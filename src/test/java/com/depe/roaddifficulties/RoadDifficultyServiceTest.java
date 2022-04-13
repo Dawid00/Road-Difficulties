@@ -4,7 +4,7 @@ import com.depe.roaddifficulties.exceptions.WrongParamException;
 import com.depe.roaddifficulties.model.GddkiaApiClient;
 import com.depe.roaddifficulties.model.TrafficDifficulty;
 import com.depe.roaddifficulties.model.Voivodeship;
-import com.depe.roaddifficulties.service.RoadDifficultiesService;
+import com.depe.roaddifficulties.service.TrafficDifficultiesService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 public class RoadDifficultyServiceTest {
 
     private GddkiaApiClient client;
-    private RoadDifficultiesService underTest;
+    private TrafficDifficultiesService underTest;
     private String testText;
 
     @BeforeEach
@@ -41,7 +41,7 @@ public class RoadDifficultyServiceTest {
         }
         client = mock(GddkiaApiClient.class);
         MockitoAnnotations.openMocks(this);
-        underTest = new RoadDifficultiesService(client);
+        underTest = new TrafficDifficultiesService(client);
     }
 
 
