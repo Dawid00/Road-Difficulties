@@ -13,7 +13,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.MockitoAnnotations;
 
 import java.io.*;
-import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -24,7 +23,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 
-public class RoadDifficultyServiceTest {
+public class TrafficDifficultyServiceTest {
 
     private GddkiaApiClient client;
     private TrafficDifficultiesService underTest;
