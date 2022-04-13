@@ -2,6 +2,7 @@ package com.depe.roaddifficulties.controller;
 
 import com.depe.roaddifficulties.model.Results;
 import com.depe.roaddifficulties.service.RoadDifficultiesService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,23 +16,23 @@ class Controller {
     }
 
     @GetMapping()
-    Results getResults(){
-        return roadDifficultiesService.getResults();
+    ResponseEntity<Results> getResults(){
+        return ResponseEntity.ok(roadDifficultiesService.getResults());
     }
 
     @GetMapping("/road/{road}")
-    Results getResultsByRoad(@PathVariable String road){
-        return roadDifficultiesService.getResultsByRoad(road);
+    ResponseEntity<Results> getResultsByRoad(@PathVariable String road){
+        return ResponseEntity.ok(roadDifficultiesService.getResultsByRoad(road));
     }
 
     @GetMapping("/voivodeship/{voivodeship}")
-    Results getResultsByVoivodeship(@PathVariable String voivodeship){
-        return roadDifficultiesService.getResultsByVoivodeship(voivodeship);
+    ResponseEntity<Results> getResultsByVoivodeship(@PathVariable String voivodeship){
+        return ResponseEntity.ok(roadDifficultiesService.getResultsByVoivodeship(voivodeship));
     }
 
     @GetMapping("/map")
-    Results getResultsByMap(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance){
-        return roadDifficultiesService.getResultsByDistance(latitude, longitude, distance);
+    ResponseEntity<Results> getResultsByMap(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance){
+        return ResponseEntity.ok(roadDifficultiesService.getResultsByDistance(latitude, longitude, distance));
     }
 
 }
