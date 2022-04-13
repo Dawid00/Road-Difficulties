@@ -3,6 +3,7 @@ package com.depe.roaddifficulties;
 import com.depe.roaddifficulties.exceptions.WrongParamException;
 import com.depe.roaddifficulties.model.GddkiaApiClient;
 import com.depe.roaddifficulties.model.TrafficDifficulty;
+import com.depe.roaddifficulties.model.Voivodeship;
 import com.depe.roaddifficulties.service.RoadDifficultiesService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -72,6 +73,7 @@ public class RoadDifficultyServiceTest {
         when(client.getResponse()).thenReturn(testText);
         var result = underTest.getResultsByVoivodeship(voivodeship);
         Set<String> results = result.getTrafficDifficulties().stream().map(TrafficDifficulty::getVoivodeship)
+                .map(Voivodeship::getName)
                 .collect(Collectors.toSet());
         //then
         assertThat(results).hasSize(1).containsExactly(expected);

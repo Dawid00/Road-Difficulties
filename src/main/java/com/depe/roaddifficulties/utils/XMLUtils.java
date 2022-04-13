@@ -14,10 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class XMLUtils {
 
@@ -65,7 +62,7 @@ public class XMLUtils {
                 builder()
                 .difficultyType(nodeAndValuesMap.get("typ"))
                 .road(nodeAndValuesMap.get("nr_drogi"))
-                .voivodeship((nodeAndValuesMap.get("woj")))
+                .voivodeship(getVoivodeshipFromString(nodeAndValuesMap.get("woj")))
                 .km(parseStringToDouble(nodeAndValuesMap.get("km")))
                 .length(parseStringToDouble(nodeAndValuesMap.get("dl")))
                 .location(Location.builder()
@@ -107,6 +104,19 @@ public class XMLUtils {
         }
         return roundAbout;
     }
+    private static Voivodeship getVoivodeshipFromString(String voivodeship) {
+        return switch(voivodeship){
+            case "śląskie" -> Voivodeship.SLASKIE;
+            case "dolnośląskie" -> Voivodeship.DOLNOSLASKIE;
+            case "kujawsko-pomorskie" -> Voivodeship.KUJAWSKO_POMORSKIE;
+            case "warmińsko-mazurskie" -> Voivodeship.WARMINSKO_MAZURSKIE;
+            case "łódzkie" -> Voivodeship.LODZKIE;
+            case "małopolskie" -> Voivodeship.MALOPOLSKIE;
+            case "świętokrzyskie" -> Voivodeship.SWIETOKRZYSKIE;
+            default -> Voivodeship.valueOf(voivodeship.toUpperCase(Locale.ROOT));
+        };
+    }
+
 
     private static LocalDateTime parseStringToLocalDateTime(String date) {
         return LocalDateTime.parse(date.substring(0, 16));

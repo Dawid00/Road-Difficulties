@@ -29,7 +29,7 @@ public class RoadDifficultiesService {
         String responseBody = gddkiaApiClient.getResponse();
         Results results = getResultsFromResponseBody(responseBody);
         List<TrafficDifficulty> trafficDifficulties = results.getTrafficDifficulties().stream()
-                .filter(trafficDifficulty -> trafficDifficulty.getVoivodeship().equals(voivodeship.getName()))
+                .filter(trafficDifficulty -> trafficDifficulty.getVoivodeship().equals(voivodeship))
                 .toList();
         return new Results(results.getDate(), trafficDifficulties);
     }

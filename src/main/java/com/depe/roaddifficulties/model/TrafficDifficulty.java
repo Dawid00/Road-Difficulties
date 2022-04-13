@@ -14,7 +14,7 @@ public class TrafficDifficulty {
 
     private String difficultyType;
     private String road;
-    private String voivodeship;
+    private Voivodeship voivodeship;
     private double km;
     private double length;
     private Location location;
