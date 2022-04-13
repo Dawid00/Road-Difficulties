@@ -1,30 +1,30 @@
-# Road Difficulties in Poland
+# Traffic Difficulties in Poland
 
-This is a small api which informs about current road difficulties in Poland. It takes data from :
+This is a small api which informs about current traffic difficulties in Poland. It takes data from :
 https://www.archiwum.gddkia.gov.pl/dane/zima_html/utrdane.xml
 
 I used
 Java and Spring Boot to create application.
 ## API Reference
 
-#### Get all current road difficulties
+#### Get all current traffic difficulties
 
 ```http
   GET api/v1/traffic-difficulties
 ```
 
-#### Get all current road difficulties in chosen voivodeship
+#### Get all current traffic difficulties in chosen voivodeship
 
 ```http
   GET api/v1/traffic-difficulties/voivodeship/{voivodeship}
 ```
 
 except voivodeship: warminsko_mazurskie , kujawsko_pomorskie
-#### Get all current road difficulties in road 
+#### Get all current traffic difficulties in road using roadName 
 ```http
-  GET api/v1/traffic-difficulties/road/{road}
+  GET api/v1/traffic-difficulties/road/{roadName}
 ```
-#### Get all current road difficulties by location and distance
+#### Get all current traffic difficulties by location and distance
 ```http
   GET api/v1/traffic-difficulties/map
 ```
