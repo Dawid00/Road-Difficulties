@@ -28,11 +28,11 @@ public class TrafficDifficulty {
     private String pressureCapacityLimit;
     private double widthLimit;
     private int speedLimit;
-    private boolean alternatingTraffic;
-    private boolean trafficLights;
-    private boolean bridgeFailure;
-    private boolean twoWay;
-    private boolean closedRoad;
+    private boolean isAlternatingTraffic;
+    private boolean isTrafficLights;
+    private boolean isBridgeFailure;
+    private boolean isTwoWay;
+    private boolean isClosedRoad;
     private Latency latency;
     private String  horizontalExtremeLimit;
     private String verticalExtremeLimit;
