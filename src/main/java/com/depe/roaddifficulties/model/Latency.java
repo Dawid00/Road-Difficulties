@@ -1,12 +1,12 @@
 package com.depe.roaddifficulties.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @ToString
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Latency {
     private LatencyTime latencyTime;
 }
