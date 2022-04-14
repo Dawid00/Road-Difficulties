@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/traffic-difficulties")
-class Controller {
+class TrafficDifficultiesController {
 
     private final TrafficDifficultiesService trafficDifficultiesService;
 
-    Controller(TrafficDifficultiesService trafficDifficultiesService) {
+    TrafficDifficultiesController(TrafficDifficultiesService trafficDifficultiesService) {
         this.trafficDifficultiesService = trafficDifficultiesService;
     }
 
