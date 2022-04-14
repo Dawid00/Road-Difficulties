@@ -7,6 +7,7 @@ import com.depe.roaddifficulties.model.TrafficDifficulty;
 import com.depe.roaddifficulties.model.Voivodeship;
 import com.depe.roaddifficulties.service.TrafficDifficultiesService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -68,6 +69,7 @@ public class TrafficDifficultyServiceTest {
 
     @ParameterizedTest(name = "{0} should be {1}")
     @MethodSource("provideVoivodeships")
+    @DisplayName("should return results filtered by voivodeship")
     void shouldReturnResultsWithVoivodeship(String voivodeship, String expected) {
         //when
         when(client.getResponse()).thenReturn(testText);
@@ -89,7 +91,8 @@ public class TrafficDifficultyServiceTest {
 
     @ParameterizedTest()
     @MethodSource("provideWrongVoivodeships")
-    void shouldThrow(String voivodeship) {
+    @DisplayName("should throw WrongParamException when voivodeship doesnt exist (wrong query param)")
+    void shouldThrowWrongParamException(String voivodeship) {
         var result = assertThrows(WrongParamException.class, () -> underTest.getResultsByVoivodeship(voivodeship));
         assertThat(result.getMessage()).isEqualTo(voivodeship + " is not a voivodeship");
     }
@@ -104,6 +107,7 @@ public class TrafficDifficultyServiceTest {
 
     @ParameterizedTest
     @MethodSource("provideRoads")
+    @DisplayName("should return results filtered by road name")
     void shouldReturnResultsWithRoad(String roadName, int amount) {
         //when
         when(client.getResponse()).thenReturn(testText);
@@ -125,6 +129,7 @@ public class TrafficDifficultyServiceTest {
 
     @ParameterizedTest
     @MethodSource("provideDistance")
+    @DisplayName("should return results filtered by distance and location(latitude and longitude")
     void getResultsByDistance(Double latitude, Double longitude, Double distance, int size) {
         //when
         when(client.getResponse()).thenReturn(testText);
