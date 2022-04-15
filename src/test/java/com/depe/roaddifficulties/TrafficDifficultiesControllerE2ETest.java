@@ -2,6 +2,9 @@
 package com.depe.roaddifficulties;
 
 import com.depe.roaddifficulties.model.Results;
+import com.depe.roaddifficulties.model.Road;
+import com.depe.roaddifficulties.model.TrafficDifficulty;
+import com.depe.roaddifficulties.model.Voivodeship;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,6 +12,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,17 +25,28 @@ public class TrafficDifficultiesControllerE2ETest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
+    /**
+     *
+     * the tests depend on actual road conditions
+     */
+
     @Test
     void httpGetReturnsAllCurrentDifficulties(){
         Results results = testRestTemplate
                 .getForObject("http://localhost:" + port + "/api/v1/traffic-difficulties" , Results.class);
         assertThat(results).isNotNull();
     }
+
     @Test
     void httpGetReturnsAllCurrentDifficultiesByRoad(){
         Results results = testRestTemplate
                 .getForObject("http://localhost:" + port + "/api/v1/traffic-difficulties/road/a2" , Results.class);
         assertThat(results).isNotNull();
+        var roadNameFromResult = results.getTrafficDifficulties().stream()
+                .map(TrafficDifficulty::getRoad)
+                .map(Road::getName)
+                .collect(Collectors.toSet());
+        assertThat(roadNameFromResult).hasSize(1).containsExactly("A2");
     }
 
     @Test
@@ -39,6 +54,10 @@ public class TrafficDifficultiesControllerE2ETest {
         Results results = testRestTemplate
                 .getForObject("http://localhost:" + port + "/api/v1/traffic-difficulties/voivodeship/lubelskie" , Results.class);
         assertThat(results).isNotNull();
+        var voivodeshipsFromResult = results.getTrafficDifficulties().stream()
+                .map(TrafficDifficulty::getVoivodeship)
+                .collect(Collectors.toSet());
+        assertThat(voivodeshipsFromResult).hasSize(1).containsExactly(Voivodeship.LUBELSKIE);
     }
 
     @Test
