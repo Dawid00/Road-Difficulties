@@ -1,6 +1,6 @@
-package com.depe.roaddifficulties.model;
+package com.depe.roaddifficulties.traffic_difficulty;
 
-public enum Voivodeship {
+enum Voivodeship {
 
     LUBELSKIE("lubelskie"), LODZKIE("łódzkie"), LUBUSKIE("lubuskie"), SLASKIE("śląskie"),
     KUJAWSKO_POMORSKIE("kujawsko-pomorskie"), DOLNOSLASKIE("dolnośląskie"), MALOPOLSKIE("małopolskie"),

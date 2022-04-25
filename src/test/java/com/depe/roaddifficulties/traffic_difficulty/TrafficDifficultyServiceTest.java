@@ -1,11 +1,7 @@
-package com.depe.roaddifficulties;
+package com.depe.roaddifficulties.traffic_difficulty;
 
 import com.depe.roaddifficulties.exceptions.WrongParamException;
-import com.depe.roaddifficulties.model.GddkiaApiClient;
-import com.depe.roaddifficulties.model.Road;
-import com.depe.roaddifficulties.model.TrafficDifficulty;
-import com.depe.roaddifficulties.model.Voivodeship;
-import com.depe.roaddifficulties.service.TrafficDifficultiesService;
+import com.depe.roaddifficulties.client.GddkiaApiClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

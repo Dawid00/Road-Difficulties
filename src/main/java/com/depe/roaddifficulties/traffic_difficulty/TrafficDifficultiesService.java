@@ -1,8 +1,7 @@
-package com.depe.roaddifficulties.service;
+package com.depe.roaddifficulties.traffic_difficulty;
 
 import com.depe.roaddifficulties.exceptions.WrongParamException;
-import com.depe.roaddifficulties.model.*;
-import com.depe.roaddifficulties.utils.XMLUtils;
+import com.depe.roaddifficulties.client.*;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Locale;
@@ -22,7 +21,7 @@ public class TrafficDifficultiesService {
     }
 
     private static Results getResultsFromResponseBody(String responseBody){
-        return XMLUtils.deserializeResultsFromXMLAsString(responseBody);
+        return TrafficDifficultyXMLParser.deserializeResultsFromXMLAsString(responseBody);
     }
     public Results getResultsByVoivodeship(String queryVoivodeship) {
         Voivodeship voivodeship = getVoivodeshipFromString(queryVoivodeship);

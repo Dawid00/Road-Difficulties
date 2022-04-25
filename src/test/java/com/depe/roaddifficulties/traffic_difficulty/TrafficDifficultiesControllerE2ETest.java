@@ -1,10 +1,10 @@
 
-package com.depe.roaddifficulties;
+package com.depe.roaddifficulties.traffic_difficulty;
 
-import com.depe.roaddifficulties.model.Results;
-import com.depe.roaddifficulties.model.Road;
-import com.depe.roaddifficulties.model.TrafficDifficulty;
-import com.depe.roaddifficulties.model.Voivodeship;
+import com.depe.roaddifficulties.traffic_difficulty.Results;
+import com.depe.roaddifficulties.traffic_difficulty.Road;
+import com.depe.roaddifficulties.traffic_difficulty.TrafficDifficulty;
+import com.depe.roaddifficulties.traffic_difficulty.Voivodeship;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

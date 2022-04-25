@@ -1,6 +1,5 @@
-package com.depe.roaddifficulties.utils;
+package com.depe.roaddifficulties.traffic_difficulty;
 
-import com.depe.roaddifficulties.model.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,9 +15,9 @@ import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class XMLUtils {
+class TrafficDifficultyXMLParser {
 
-    public static Results deserializeResultsFromXMLAsString(String xml) {
+    static Results deserializeResultsFromXMLAsString(String xml) {
         try {
             xml = xml.replaceAll("\\r\\n|\\r|\\n", " ");
             InputStream targetStream = new ByteArrayInputStream(xml.getBytes());

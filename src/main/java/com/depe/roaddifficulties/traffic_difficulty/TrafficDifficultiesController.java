@@ -1,7 +1,5 @@
-package com.depe.roaddifficulties.controller;
+package com.depe.roaddifficulties.traffic_difficulty;
 
-import com.depe.roaddifficulties.model.Results;
-import com.depe.roaddifficulties.service.TrafficDifficultiesService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

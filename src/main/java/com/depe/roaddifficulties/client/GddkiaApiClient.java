@@ -1,4 +1,4 @@
-package com.depe.roaddifficulties.model;
+package com.depe.roaddifficulties.client;
 
 import com.depe.roaddifficulties.exceptions.InternalServerException;
 import org.springframework.beans.factory.annotation.Value;

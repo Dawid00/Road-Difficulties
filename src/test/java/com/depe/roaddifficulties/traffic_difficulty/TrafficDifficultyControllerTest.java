@@ -1,4 +1,4 @@
-package com.depe.roaddifficulties;
+package com.depe.roaddifficulties.traffic_difficulty;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
