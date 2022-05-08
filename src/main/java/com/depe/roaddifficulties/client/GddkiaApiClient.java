@@ -25,12 +25,7 @@ public class GddkiaApiClient {
 
     public String getResponse() {
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(url))
-                    .timeout(Duration.of(10, SECONDS))
-                    .GET()
-                    .build();
-            var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            var response = sendRequest();
             if(response.statusCode() == 200){
                 return response.body();
             }
@@ -41,5 +36,14 @@ public class GddkiaApiClient {
         catch (IOException | InterruptedException | URISyntaxException e) {
             throw new InternalServerException();
         }
+    }
+
+    private HttpResponse<String> sendRequest() throws URISyntaxException, IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(url))
+                .timeout(Duration.of(10, SECONDS))
+                .GET()
+                .build();
+        return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
     }
 }
